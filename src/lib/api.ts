@@ -9,7 +9,10 @@ export const fetchGames = async (
     const res = await fetch(
       `${process.env.BASE_URL}/games?search=${encodeURIComponent(
         searchQuery
-      )}&sort=${sortBy}&page=${page}`
+      )}&sort=${sortBy}&page=${page}`,
+      {
+        cache: "no-store",
+      }
     );
 
     if (!res.ok) {
