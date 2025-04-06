@@ -3,6 +3,26 @@ import Link from "next/link";
 import Order from "./order";
 import Search from "./search";
 
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: {
+    search: string;
+    sort: string;
+    page: string;
+  };
+}) {
+  const searchQuery: string = searchParams.search || "";
+  const sortBy: string = searchParams.sort || "latest";
+  const page: number = parseInt(searchParams.page) || 1;
+  const games = await fetchGames(searchQuery, sortBy, page);
+
+  return {
+    title: "Game List",
+    description: "A list of games with various sorting and filtering options.",
+  };
+}
+
 export default async function Home({
   searchParams,
 }: {

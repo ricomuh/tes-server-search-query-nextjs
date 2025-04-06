@@ -11,7 +11,8 @@ export const fetchGames = async (
         searchQuery
       )}&sort=${sortBy}&page=${page}`,
       {
-        cache: "no-store",
+        // cache: "force-cache",
+        next: { revalidate: 60 }, // Revalidate every 60 seconds
       }
     );
 
